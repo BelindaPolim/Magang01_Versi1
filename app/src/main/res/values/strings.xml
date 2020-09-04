@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Manajemen Informasi Usaha Dagang</string>
+    <string name="app_name">YSL-MIS</string>
     <string name="AppName">NamaAplikasi</string>
     <string name="pwdHint">Password</string>
     <string name="usrHint">Username</string>
