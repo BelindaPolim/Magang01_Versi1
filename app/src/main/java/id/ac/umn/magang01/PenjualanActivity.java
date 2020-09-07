@@ -33,6 +33,7 @@ public class PenjualanActivity extends AppCompatActivity {
     private ListView lv;
     EditText etSearch;
     ImageView imgBack, imgRefresh, imgSearch, imgDate;
+    TextView tvTotal;
 
     ArrayList<PenjualanModel> penjualan = new ArrayList<>();
 
@@ -40,20 +41,6 @@ public class PenjualanActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_penjualan);
-
-//        String thisYear = new SimpleDateFormat("yyyy").format(new Date());
-//        String thisMonth = new SimpleDateFormat("MM").format(new Date());
-
-//        Calendar cal = Calendar.getInstance();
-//        int year = cal.get(Calendar.YEAR);
-//        SimpleDateFormat yearFormat = new SimpleDateFormat("yyyy");
-//        String thisYear = yearFormat.format(year);
-//
-//        int month = cal.get(Calendar.MONTH);
-
-//        Setting.FROM_DATE = thisYear + "06";
-//        Setting.TO_DATE = thisYear + thisMonth;
-//        Setting.PER_BULAN = 0;
 
         lv = findViewById(R.id.listView);
         lv.setTextFilterEnabled(true);
@@ -152,6 +139,8 @@ public class PenjualanActivity extends AppCompatActivity {
                 return true;
             }
         });
+
+        tvTotal = findViewById(R.id.totalPenjualan);
 
 //        if (Setting.DATE_CHANGED == 1){
 //            refreshData();

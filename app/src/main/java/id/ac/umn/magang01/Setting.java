@@ -59,7 +59,7 @@ public class Setting {
 
         return pemisahRibuan.format(value);
     }
-    public static String pemisahRibuan(String value){
+    public static String pemisahRibuan(Long value){
         DecimalFormat pemisahRibuan = (DecimalFormat) DecimalFormat.getCurrencyInstance();
         DecimalFormatSymbols formatPemisah = new DecimalFormatSymbols();
 
@@ -69,9 +69,7 @@ public class Setting {
 
         pemisahRibuan.setDecimalFormatSymbols(formatPemisah);
 
-        String hasil = pemisahRibuan.format(value);
-
-        return hasil;
+        return pemisahRibuan.format(value);
     }
     public static String pemisahRibuan(Float value){
         DecimalFormat pemisahRibuan = (DecimalFormat) DecimalFormat.getCurrencyInstance();

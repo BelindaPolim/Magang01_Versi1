@@ -21,7 +21,7 @@ import android.widget.LinearLayout;
  * create an instance of this fragment.
  */
 public class CustomerFragment extends Fragment {
-    LinearLayout llPenjualan, llPiutang, llJatuhTempoPiutang;
+    LinearLayout llPenjualan, llPiutang, llJatuhTempoPiutang, llProfilCust;
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -83,11 +83,13 @@ public class CustomerFragment extends Fragment {
             }
         });
         llPenjualan.setOnTouchListener(new View.OnTouchListener() {
+            @SuppressLint("ClickableViewAccessibility")
             @Override
             public boolean onTouch(View v, MotionEvent event) {
                 if (event.getAction() == MotionEvent.ACTION_DOWN) {
                     llPiutang.setBackgroundColor(Color.WHITE);
                     llJatuhTempoPiutang.setBackgroundColor(Color.WHITE);
+                    llProfilCust.setBackgroundColor(Color.WHITE);
 
                     llPenjualan.setBackgroundColor(Color.LTGRAY);
                 }
@@ -108,6 +110,7 @@ public class CustomerFragment extends Fragment {
                 if (event.getAction() == MotionEvent.ACTION_DOWN) {
                     llPenjualan.setBackgroundColor(Color.WHITE);
                     llJatuhTempoPiutang.setBackgroundColor(Color.WHITE);
+                    llProfilCust.setBackgroundColor(Color.WHITE);
 
                     llPiutang.setBackgroundColor(Color.LTGRAY);
                 }
@@ -127,8 +130,30 @@ public class CustomerFragment extends Fragment {
                 if (event.getAction() == MotionEvent.ACTION_DOWN) {
                     llPenjualan.setBackgroundColor(Color.WHITE);
                     llPiutang.setBackgroundColor(Color.WHITE);
+                    llProfilCust.setBackgroundColor(Color.WHITE);
 
                     llJatuhTempoPiutang.setBackgroundColor(Color.LTGRAY);
+                }
+                return false;
+            }
+        });
+
+        llProfilCust = view.findViewById(R.id.layoutProfileCustomer);
+        llProfilCust.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getActivity(), ProfileCustActivity.class));
+            }
+        });
+        llProfilCust.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                if (event.getAction() == MotionEvent.ACTION_DOWN) {
+                    llPenjualan.setBackgroundColor(Color.WHITE);
+                    llPiutang.setBackgroundColor(Color.WHITE);
+                    llJatuhTempoPiutang.setBackgroundColor(Color.WHITE);
+
+                    llProfilCust.setBackgroundColor(Color.LTGRAY);
                 }
                 return false;
             }

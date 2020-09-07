@@ -21,7 +21,7 @@ import android.widget.LinearLayout;
  * create an instance of this fragment.
  */
 public class SupplierFragment extends Fragment {
-    LinearLayout llPembelian, llHutang, llJatuhTempoHutang;
+    LinearLayout llPembelian, llHutang, llJatuhTempoHutang, llProfilSupp;
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -90,6 +90,7 @@ public class SupplierFragment extends Fragment {
                 if (event.getAction() == MotionEvent.ACTION_DOWN) {
                     llHutang.setBackgroundColor(Color.WHITE);
                     llJatuhTempoHutang.setBackgroundColor(Color.WHITE);
+                    llProfilSupp.setBackgroundColor(Color.WHITE);
 
                     llPembelian.setBackgroundColor(Color.LTGRAY);
                 }
@@ -110,6 +111,7 @@ public class SupplierFragment extends Fragment {
                 if (event.getAction() == MotionEvent.ACTION_DOWN) {
                     llPembelian.setBackgroundColor(Color.WHITE);
                     llJatuhTempoHutang.setBackgroundColor(Color.WHITE);
+                    llProfilSupp.setBackgroundColor(Color.WHITE);
 
                     llHutang.setBackgroundColor(Color.LTGRAY);
                 }
@@ -129,8 +131,30 @@ public class SupplierFragment extends Fragment {
                 if (event.getAction() == MotionEvent.ACTION_DOWN) {
                     llPembelian.setBackgroundColor(Color.WHITE);
                     llHutang.setBackgroundColor(Color.WHITE);
+                    llProfilSupp.setBackgroundColor(Color.WHITE);
 
                     llJatuhTempoHutang.setBackgroundColor(Color.LTGRAY);
+                }
+                return false;
+            }
+        });
+
+        llProfilSupp = view.findViewById(R.id.layoutProfileSupplier);
+        llProfilSupp.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getActivity(), ProfileSuppActivity.class));
+            }
+        });
+        llProfilSupp.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                if (event.getAction() == MotionEvent.ACTION_DOWN) {
+                    llPembelian.setBackgroundColor(Color.WHITE);
+                    llHutang.setBackgroundColor(Color.WHITE);
+                    llJatuhTempoHutang.setBackgroundColor(Color.WHITE);
+
+                    llProfilSupp.setBackgroundColor(Color.LTGRAY);
                 }
                 return false;
             }
