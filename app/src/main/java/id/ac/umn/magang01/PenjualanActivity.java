@@ -34,6 +34,7 @@ public class PenjualanActivity extends AppCompatActivity {
     EditText etSearch;
     ImageView imgBack, imgRefresh, imgSearch, imgDate;
     TextView tvTotal;
+    long total = 0;
 
     ArrayList<PenjualanModel> penjualan = new ArrayList<>();
 
@@ -82,6 +83,7 @@ public class PenjualanActivity extends AppCompatActivity {
                     penjualan.clear();
                     String cari = etSearch.getText().toString().trim();
                     new GetContacts().execute(cari);
+                    total = 0;
                     return true;
                 }
                 return false;
@@ -95,6 +97,7 @@ public class PenjualanActivity extends AppCompatActivity {
                 penjualan.clear();
                 String cari = etSearch.getText().toString().trim();
                 new GetContacts().execute(cari);
+                total = 0;
             }
         });
 
@@ -225,9 +228,11 @@ public class PenjualanActivity extends AppCompatActivity {
                         String search = strings[0];
                         if(search.isEmpty()){
                             penjualan.add(new PenjualanModel(id, name, Setting.pemisahRibuan(nilaiPenjualan).substring(0, nilai.length()-3)));
+                            total += nilaiPenjualan;
                         }
                         else if(name.contains(search.toUpperCase())) {
                             penjualan.add(new PenjualanModel(id, name, Setting.pemisahRibuan(nilaiPenjualan).substring(0, nilai.length()-3)));
+                            total += nilaiPenjualan;
                         }
                     }
 
@@ -270,6 +275,7 @@ public class PenjualanActivity extends AppCompatActivity {
             dismissProgressDialog();
 
             lv.setAdapter(new PenjualanAdapter(PenjualanActivity.this, R.layout.list_penjualan, penjualan));
+            tvTotal.setText(Setting.pemisahRibuan(total).substring(0, Setting.pemisahRibuan(total).length()-3));
         }
     }
 }

@@ -32,6 +32,8 @@ public class PembelianActivity extends AppCompatActivity {
     private ListView lv;
     EditText etSearch;
     ImageView imgBack, imgRefresh, imgSearch, imgDate;
+    TextView tvTotal;
+    long total = 0;
 
     ArrayList<PembelianModel> pembelian = new ArrayList<>();
 
@@ -80,6 +82,7 @@ public class PembelianActivity extends AppCompatActivity {
                     pembelian.clear();
                     String cari = etSearch.getText().toString().trim();
                     new GetContacts().execute(cari);
+                    total = 0;
                     return true;
                 }
                 return false;
@@ -93,6 +96,7 @@ public class PembelianActivity extends AppCompatActivity {
                 pembelian.clear();
                 String cari = etSearch.getText().toString().trim();
                 new GetContacts().execute(cari);
+                total = 0;
             }
         });
 
@@ -136,6 +140,8 @@ public class PembelianActivity extends AppCompatActivity {
                 return true;
             }
         });
+
+        tvTotal = findViewById(R.id.totalPembelian);
     }
 
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -222,9 +228,11 @@ public class PembelianActivity extends AppCompatActivity {
                         String search = strings[0];
                         if(search.isEmpty()){
                             pembelian.add(new PembelianModel(id, name, Setting.pemisahRibuan(nilaiPembelian).substring(0, nilai.length()-3)));
+                            total += nilaiPembelian;
                         }
                         else if(name.contains(search.toUpperCase())) {
                             pembelian.add(new PembelianModel(id, name, Setting.pemisahRibuan(nilaiPembelian).substring(0, nilai.length()-3)));
+                            total += nilaiPembelian;
                         }
                     }
 
@@ -267,6 +275,7 @@ public class PembelianActivity extends AppCompatActivity {
             dismissProgressDialog();
 
             lv.setAdapter(new PembelianAdapter(PembelianActivity.this, R.layout.list_pembelian, pembelian));
+            tvTotal.setText(Setting.pemisahRibuan(total).substring(0, Setting.pemisahRibuan(total).length()-3));
         }
     }
 }

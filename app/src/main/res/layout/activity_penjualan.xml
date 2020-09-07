@@ -18,7 +18,6 @@
             android:id="@+id/imgBack"
             android:layout_width="30dp"
             android:layout_height="30dp"
-            android:layout_marginStart="15dp"
             android:contentDescription="@string/app_name"
             android:src="@drawable/ic_arrow_back"
             app:layout_constraintStart_toStartOf="parent"
@@ -32,6 +31,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="15dp"
             android:layout_marginTop="5dp"
+            android:layout_marginBottom="2dp"
             android:text="Penjualan"
             android:textColor="@color/white"
             android:textSize="25sp"
@@ -40,6 +40,34 @@
             app:layout_constraintStart_toEndOf="@id/imgBack"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintHorizontal_chainStyle="packed"/>
+
+        <TextView
+            android:id="@+id/titleTotal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/textTitle"
+            app:layout_constraintBottom_toTopOf="@id/searchBar"
+            android:text="Nilai total : "
+            android:padding="5dp"
+            android:layout_marginBottom="2dp"
+            android:layout_marginStart="5dp"
+            android:textColor="@color/white"
+            android:textStyle="bold"
+            android:textSize="20sp"/>
+        <TextView
+            android:id="@+id/totalPenjualan"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/textTitle"
+            app:layout_constraintBottom_toTopOf="@id/searchBar"
+            android:padding="5dp"
+            android:layout_marginBottom="2dp"
+            android:layout_marginEnd="5dp"
+            android:textColor="@color/white"
+            android:textStyle="bold"
+            android:textSize="20sp"/>
 
         <ImageView
             android:id="@+id/imgDate"
@@ -52,11 +80,11 @@
             app:layout_constraintEnd_toStartOf="@id/imgRefresh"
             app:layout_constraintTop_toTopOf="@id/textTitle"
             app:tint="@color/colorPrimaryLight" />
+
         <ImageView
             android:id="@+id/imgRefresh"
             android:layout_width="30dp"
             android:layout_height="30dp"
-            android:layout_marginEnd="15dp"
             android:contentDescription="@string/app_name"
             android:src="@drawable/ic_refresh"
             app:layout_constraintBottom_toBottomOf="@id/textTitle"
@@ -68,9 +96,7 @@
             android:id="@+id/searchBar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="15dp"
-            android:layout_marginEnd="15dp"
-            android:layout_marginBottom="20dp"
+            android:layout_marginTop="5dp"
             android:background="@drawable/white_rectangle_background"
             android:orientation="horizontal"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -85,7 +111,7 @@
                 android:hint="Customer"
                 android:imeOptions="actionSearch"
                 android:inputType="text"
-                android:paddingStart="15dp"
+                android:paddingStart="10dp"
                 android:paddingEnd="15dp"
                 android:textColor="@color/colorTextPrimary"
                 android:textSize="16sp"
@@ -111,20 +137,18 @@
             android:textSize="20sp"
             android:text="Nama Customer"
             android:layout_alignParentStart="true"
-            android:layout_marginTop="10dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/searchBar"
             app:layout_constraintBottom_toBottomOf="parent"/>
 
         <TextView
-            android:id="@+id/nilai"
+            android:id="@+id/sisa"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textColor="@color/white"
             android:textStyle="bold"
             android:textSize="20sp"
             android:text="Nilai Penjualan"
-            android:layout_marginTop="10dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/searchBar"
             app:layout_constraintBottom_toBottomOf="parent"/>
