@@ -32,6 +32,8 @@ public class HutangActivity extends AppCompatActivity {
     private ListView lv;
     EditText etSearch;
     ImageView imgBack, imgRefresh, imgSearch;
+    TextView tvTotal;
+    long total = 0;
 
     ArrayList<HutangModel> hutang = new ArrayList<>();
 
@@ -71,6 +73,7 @@ public class HutangActivity extends AppCompatActivity {
                     hutang.clear();
                     String cari = etSearch.getText().toString().trim();
                     new GetContacts().execute(cari);
+                    total = 0;
                     return true;
                 }
                 return false;
@@ -84,8 +87,11 @@ public class HutangActivity extends AppCompatActivity {
                 hutang.clear();
                 String cari = etSearch.getText().toString().trim();
                 new GetContacts().execute(cari);
+                total = 0;
             }
         });
+
+        tvTotal = findViewById(R.id.totalHutang);
     }
 
     private void refreshData() {
@@ -129,14 +135,6 @@ public class HutangActivity extends AppCompatActivity {
             String url = Setting.API_Hutang_Dagang;
             String jsonStr = sh.makeServiceCall(url);
 
-            DecimalFormat pemisahRibuan = (DecimalFormat) DecimalFormat.getCurrencyInstance();
-            DecimalFormatSymbols formatPemisah = new DecimalFormatSymbols();
-
-            formatPemisah.setCurrencySymbol("");
-            formatPemisah.setMonetaryDecimalSeparator(',');
-            formatPemisah.setGroupingSeparator('.');
-
-            pemisahRibuan.setDecimalFormatSymbols(formatPemisah);
 
             if(jsonStr == null) Log.e(TAG, "JSON null");
 
@@ -156,14 +154,16 @@ public class HutangActivity extends AppCompatActivity {
                         String name = c.getString("FullName");
                         int sisaHutang = c.getInt("SisaPiutang");
 
-                        String sisa = pemisahRibuan.format(sisaHutang);
+                        String sisa = Setting.pemisahRibuan(sisaHutang);
 
                         String search = strings[0];
                         if(search.isEmpty()){
-                            hutang.add(new HutangModel(id, name, pemisahRibuan.format(sisaHutang).substring(0, sisa.length()-3)));
+                            hutang.add(new HutangModel(id, name, Setting.pemisahRibuan(sisaHutang).substring(0, sisa.length()-3)));
+                            total += sisaHutang;
                         }
                         else if(name.contains(search.toUpperCase())) {
-                            hutang.add(new HutangModel(id, name, pemisahRibuan.format(sisaHutang).substring(0, sisa.length()-3)));
+                            hutang.add(new HutangModel(id, name, Setting.pemisahRibuan(sisaHutang).substring(0, sisa.length()-3)));
+                            total += sisaHutang;
                         }
                     }
 
@@ -206,6 +206,7 @@ public class HutangActivity extends AppCompatActivity {
             dismissProgressDialog();
 
             lv.setAdapter(new HutangAdapter(HutangActivity.this, R.layout.list_hutang, hutang));
+            tvTotal.setText(Setting.pemisahRibuan(total).substring(0, Setting.pemisahRibuan(total).length()-3));
         }
     }
 }

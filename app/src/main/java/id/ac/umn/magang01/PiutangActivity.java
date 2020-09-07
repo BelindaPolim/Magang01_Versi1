@@ -51,6 +51,8 @@ public class PiutangActivity extends AppCompatActivity {
     private ListView lv;
     EditText etSearch;
     ImageView imgBack, imgRefresh, imgSearch;
+    TextView tvTotal;
+    long total = 0;
 //    String search;
 
     //    PiutangAdapter dataAdapter = null;
@@ -98,6 +100,7 @@ public class PiutangActivity extends AppCompatActivity {
                     piutang.clear();
                     String cari = etSearch.getText().toString().trim();
                     new GetContacts().execute(cari);
+                    total = 0;
                     return true;
                 }
                 return false;
@@ -114,9 +117,11 @@ public class PiutangActivity extends AppCompatActivity {
 //                etSearch = findViewById(R.id.inputSearch);
                 String cari = etSearch.getText().toString().trim();
                 new GetContacts().execute(cari);
+                total = 0;
             }
         });
 
+        tvTotal = findViewById(R.id.totalPiutang);
     }
 
     private void refreshData() {
@@ -162,14 +167,14 @@ public class PiutangActivity extends AppCompatActivity {
             String url = Setting.API_Piutang_Dagang;
             String jsonStr = sh.makeServiceCall(url);
 
-            DecimalFormat pemisahRibuan = (DecimalFormat) DecimalFormat.getCurrencyInstance();
-            DecimalFormatSymbols formatPemisah = new DecimalFormatSymbols();
-
-            formatPemisah.setCurrencySymbol("");
-            formatPemisah.setMonetaryDecimalSeparator(',');
-            formatPemisah.setGroupingSeparator('.');
-
-            pemisahRibuan.setDecimalFormatSymbols(formatPemisah);
+//            DecimalFormat pemisahRibuan = (DecimalFormat) DecimalFormat.getCurrencyInstance();
+//            DecimalFormatSymbols formatPemisah = new DecimalFormatSymbols();
+//
+//            formatPemisah.setCurrencySymbol("");
+//            formatPemisah.setMonetaryDecimalSeparator(',');
+//            formatPemisah.setGroupingSeparator('.');
+//
+//            pemisahRibuan.setDecimalFormatSymbols(formatPemisah);
 
             if(jsonStr == null) Log.e(TAG, "JSON null");
 
@@ -189,14 +194,16 @@ public class PiutangActivity extends AppCompatActivity {
                         String name = c.getString("FullName");
                         int sisaPiutang = c.getInt("SisaPiutang");
 
-                        String sisa = pemisahRibuan.format(sisaPiutang);
+                        String sisa = Setting.pemisahRibuan(sisaPiutang);
 
                         String search = strings[0];
                         if(search.isEmpty()){
-                            piutang.add(new PiutangModel(id, name, pemisahRibuan.format(sisaPiutang).substring(0, sisa.length()-3)));
+                            piutang.add(new PiutangModel(id, name, Setting.pemisahRibuan(sisaPiutang).substring(0, sisa.length()-3)));
+                            total += sisaPiutang;
                         }
                         else if(name.contains(search.toUpperCase())) {
-                            piutang.add(new PiutangModel(id, name, pemisahRibuan.format(sisaPiutang).substring(0, sisa.length()-3)));
+                            piutang.add(new PiutangModel(id, name, Setting.pemisahRibuan(sisaPiutang).substring(0, sisa.length()-3)));
+                            total += sisaPiutang;
                         }
                         else {
 //                            piutang.add(new PiutangModel(id, name, sisaPiutang));
@@ -244,6 +251,7 @@ public class PiutangActivity extends AppCompatActivity {
             dismissProgressDialog();
 
             lv.setAdapter(new PiutangAdapter(PiutangActivity.this, R.layout.list_piutang, piutang));
+            tvTotal.setText(Setting.pemisahRibuan(total).substring(0, Setting.pemisahRibuan(total).length()-3));
         }
     }
 }
