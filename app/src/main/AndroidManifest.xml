@@ -14,7 +14,10 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".ProfileCustActivity"></activity>
+        <activity
+            android:name=".ProfileDetailActivity"
+            android:theme="@style/CustomDialog"/>
+        <activity android:name=".ProfileCustActivity" />
         <activity android:name=".ProfileSuppActivity" />
         <activity
             android:name=".MainMenuActivity"

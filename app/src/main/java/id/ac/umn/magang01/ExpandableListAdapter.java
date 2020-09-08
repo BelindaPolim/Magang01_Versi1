@@ -90,10 +90,10 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
             convertView = infalInflater.inflate(R.layout.list_profile_detail, null);
         }
 
-        TextView txtListChild = (TextView) convertView
-                .findViewById(R.id.profileDetails);
-
-        txtListChild.setText(childText);
+//        TextView txtListChild = (TextView) convertView
+//                .findViewById(R.id.profileDetails);
+//
+//        txtListChild.setText(childText);
         return convertView;
     }
 

@@ -24,6 +24,11 @@ public class Setting {
     public static final String API_Penjualan_Dagang = API + "penjualan_per_customer";
     public static final String API_Informasi_Supplier = API + "info_per_supplier";
     public static final String API_Informasi_Customer = API + "info_per_customer";
+    public static final String API_Profile_Supplier = API + "profile_supplier";
+    public static final String API_Profile_Supplier_Details = API + "profile_supplier_detail";
+    public static final String API_Profile_Customer = API + "profile_customer";
+    public static final String API_Profile_Customer_Details = API + "profile_customer_detail";
+
 
     //shared preference
     public static final String SP_TOKEN = "user_token";
