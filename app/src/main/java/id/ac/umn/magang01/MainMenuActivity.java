@@ -33,6 +33,8 @@ public class MainMenuActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_menu);
 
+        loadFragment(new CustomerFragment());
+
         btnLogout = findViewById(R.id.imgLogout);
         btnLogout.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -55,6 +57,7 @@ public class MainMenuActivity extends AppCompatActivity {
         });
 
         llCust = findViewById(R.id.layoutMenuCust);
+        llCust.setBackgroundColor(Color.LTGRAY);
         llCust.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

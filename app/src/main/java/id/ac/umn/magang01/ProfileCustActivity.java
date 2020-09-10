@@ -140,7 +140,7 @@ public class ProfileCustActivity extends AppCompatActivity {
         @Override
         protected Void doInBackground(String... strings) {
             HttpHandler sh = new HttpHandler();
-//            Log.d(TAG, "doInBackground: INI VALUE SP FROM DATE" + Setting.FROM_DATE + "SP_TODATE" + Setting.TO_DATE);
+
             String url = Setting.API_Piutang_Dagang;
             String jsonStr = sh.makeServiceCall(url);
 

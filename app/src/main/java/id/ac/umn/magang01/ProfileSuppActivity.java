@@ -54,7 +54,7 @@ public class ProfileSuppActivity extends AppCompatActivity {
         lv.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
             @Override
             public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
-                Intent detailProfil = new Intent(ProfileSuppActivity.this, InformasiTambahan.class);
+                Intent detailProfil = new Intent(ProfileSuppActivity.this, ProfileDetailActivity.class);
                 String code = profileSupp.get(position).getID();
                 String name = profileSupp.get(position).getName();
                 detailProfil.putExtra("url", Setting.API_Profile_Supplier_Details);
@@ -194,7 +194,7 @@ public class ProfileSuppActivity extends AppCompatActivity {
         @Override
         protected Void doInBackground(String... strings) {
             HttpHandler sh = new HttpHandler();
-//            Log.d(TAG, "doInBackground: INI VALUE SP FROM DATE" + Setting.FROM_DATE + "SP_TODATE" + Setting.TO_DATE);
+
             String url = Setting.API_Hutang_Dagang;
             String jsonStr = sh.makeServiceCall(url);
 
